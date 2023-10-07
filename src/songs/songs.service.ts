@@ -12,7 +12,12 @@ export class SongsService {
   private songRepository : Repository<Song> ) {}
 
   create(createSongDto: CreateSongDto) {
-    return 'This action adds a new song';
+    let song = new Song();
+    song.title = createSongDto.title;
+    song.artist = createSongDto.artist;
+    song.album = createSongDto.album;
+    song.year = createSongDto.year;
+    return this.songRepository.save(song); // INSERT INTO songs (title, artist, album, year) VALUES (createSongDto.title, createSongDto.artist, createSongDto.album, createSongDto.year);
   }
 
   findAll(): Promise<Song[]> {
